@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import Lugares from './pages/Lugares/Lugares';
+import ContextAPI from "./ContextAPI/ContextAPI";
+import listaLugares from './data/listaLugares.json';
+import Title from './assets/img/title_share_eat.png';
+import './App.css'
+  
+const App = () => {
+  const [lugares, setLugares] = useState([]);
 
-function App() {
+  useEffect(() => {
+    setLugares(listaLugares);
+  });
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container-app'>
+      <img className='m-auto mb-[50px]' src={Title} alt="Logo Share Eat" />
+      <div className='w-[290px] m-auto'>
+        <h1 className='text-[#F3AA00] text-[36px] title'>Lugares</h1>
+        <p className='text-white simple-text'>{lugares.length>1?lugares.length+" lugares cadastrados":"lugar cadastrado"}</p>
+      </div>
+      
+      <ContextAPI.Provider value={{lugares, setLugares}}>
+        <Lugares />
+      </ContextAPI.Provider>      
     </div>
   );
 }
