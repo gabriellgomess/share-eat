@@ -1,30 +1,40 @@
 import React, {useEffect, useState} from 'react';
-import Lugares from './pages/Lugares/Lugares';
 import ContextAPI from "./ContextAPI/ContextAPI";
 import listaLugares from './data/listaLugares.json';
 import Title from './assets/img/title_share_eat.png';
+import Lugares from './pages/Lugares/Lugares';
+import PlacePage from './pages/Place/PlacePage';
+import Menu from './pages/Menu/Menu';
+// import Menu from './components/Menu/Menu';
+import { Routes, Route } from "react-router-dom";
 import './App.css'
   
 const App = () => {
   const [lugares, setLugares] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     setLugares(listaLugares);
-  });
+    console.log(lugares);
+  },[]);
   
   
   return (
-    <div className='container-app'>
-      <img className='m-auto mb-[50px]' src={Title} alt="Logo Share Eat" />
-      <div className='w-[290px] m-auto'>
-        <h1 className='text-[#F3AA00] text-[36px] title'>Lugares</h1>
-        <p className='text-white simple-text'>{lugares.length>1?lugares.length+" lugares cadastrados":"lugar cadastrado"}</p>
-      </div>
-      
-      <ContextAPI.Provider value={{lugares, setLugares}}>
-        <Lugares />
-      </ContextAPI.Provider>      
-    </div>
+    
+    <>
+      <ContextAPI.Provider value={{lugares, setLugares, showForm, setShowForm}}>
+        <div className='container-app'>
+          <img className='m-auto mb-[50px]' src={Title} alt="Logo Share Eat" />
+          <Routes>      
+            <Route path="/share-eat" element={<Lugares />}/>
+            <Route path="/share-eat/place/:name" element={<PlacePage />}/>
+            <Route path="/share-eat/menu/:name" element={<Menu />}/>
+          </Routes>
+        </div>
+      </ContextAPI.Provider> 
+    </>
+           
+    
   );
 }
 
