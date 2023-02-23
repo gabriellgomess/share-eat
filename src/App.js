@@ -5,7 +5,6 @@ import Title from './assets/img/title_share_eat.png';
 import Lugares from './pages/Lugares/Lugares';
 import PlacePage from './pages/Place/PlacePage';
 import Menu from './pages/Menu/Menu';
-// import Menu from './components/Menu/Menu';
 import { Routes, Route } from "react-router-dom";
 import './App.css'
   
@@ -15,7 +14,6 @@ const App = () => {
 
   useEffect(() => {
     setLugares(listaLugares);
-    console.log(lugares);
   },[]);
   
   

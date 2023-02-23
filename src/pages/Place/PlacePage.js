@@ -14,7 +14,6 @@ const PlacePage = () => {
 
   const { lugares } = useContext(ContextAPI);
   const { name } = useParams();
-  const { showForm, setShowForm } = useContext(ContextAPI);
 
   // Encontra o estabelecimento pelo nome
   const lugar = lugares.find((lugar) => lugar.name === name);
@@ -23,15 +22,11 @@ const PlacePage = () => {
     return <div>Lugar não encontrado.</div>;
   }
 
-  const handleShowForm = () => {
-    setShowForm(true);
-  };
-
   return (
-    <div className="text-[#FFFFFF] w-[380px] m-auto">
+    <div className="text-[#FFFFFF] w-[330px] m-auto">
       <div
-        onClick={showForm == false ? handleVoltar : () => setShowForm(false)}
-        className="fixed top-[75px] cursor-pointer"
+        onClick={()=>handleVoltar()}
+        className="fixed top-[12px] cursor-pointer"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +63,7 @@ const PlacePage = () => {
                   })}
                 </h2>
               </div>
-              <p className="simple-text">{menuItem.description}</p>
+              <p className="simple-text !ml-0">{menuItem.description}</p>
             </div>
           ))}
 

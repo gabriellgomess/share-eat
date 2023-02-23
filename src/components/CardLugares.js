@@ -19,9 +19,9 @@ const CardLugares = () => {
       
         <>
           {lugares.map((lugar) => (        
-            <div key={lugar.name} className="flex items-center">
-              <Link className="w-[310px]" to={`/share-eat/place/${lugar.name}`}>
-                <div className="p-6 max-w-sm mx-auto bg-[#333333] rounded-[8px] shadow-lg flex items-start justify-evenly space-x-4 m-4 flex-col w-[254px] h-[75px] cursor-pointer">
+            <div key={lugar.name} className="flex items-center mb-[16px]">
+              <Link className="w-[274px] mr-[20px]" to={`/share-eat/place/${lugar.name}`}>
+                <div className="p-6 max-w-sm mx-auto bg-[#333333] rounded-[8px] shadow-lg flex items-start justify-evenly space-x-4 flex-col w-[254px] h-[75px] cursor-pointer">
                   <div className="text-xl font-medium text-white title">{lugar.name}</div>
                   <p style={{ marginLeft: 0 }} className="text-white simple-text">
                     {lugar.menuItems.length}
