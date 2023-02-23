@@ -51,7 +51,7 @@ const PlacePage = () => {
           {lugar.menuItems.map((menuItem) => (
             <div
               key={menuItem.name}
-              className="px-[19px] py-[12px]  mx-auto bg-[#464646] rounded-[8px] shadow-lg flex items-start justify-start space-x-4 m-4 flex-col w-[312px] h-[127px] borda"
+              className="px-[19px] py-[12px]  mx-auto bg-[#464646] rounded-[8px] shadow-lg flex items-start justify-start space-x-4 m-4 flex-col w-[312px] min-h-[127px] borda"
             >
               <div className="w-[100%] flex justify-between mb-[9px]">
                 <h2 className="title">{menuItem.name}</h2>

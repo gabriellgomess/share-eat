@@ -7,6 +7,7 @@ const Menu = () => {
   const { name } = useParams();
   const [nomePrato, setNomePrato] = useState("");
   const [valorPrato, setValorPrato] = useState("");
+  const [valorPratoFormatado, setValorPratoFormatado] = useState("");
   const [descricaoPrato, setDescricaoPrato] = useState("");
  
   const history = useNavigate();
@@ -20,8 +21,13 @@ const Menu = () => {
   };
 
   const handleValorPrato = (e) => {
-    setValorPrato(e.target.value);
+    const formattedValue = formatCurrency(e.target.value);
+    setValorPratoFormatado(formattedValue);
+    const newValue = formattedValue.replace('R$', '').replace(',', '.');
+    const newValue2 = parseFloat(newValue).toFixed(2);
+    setValorPrato(newValue2);
   };
+  
 
   const handleDescricaoPrato = (e) => {
     setDescricaoPrato(e.target.value);
@@ -52,6 +58,19 @@ const Menu = () => {
 
   const caracteresRestantes = 200 - descricaoPrato.length;
 
+  const formatCurrency = (value) => {
+    const formatter = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    const stringValue = value.replace(/\D/g, '');
+    const floatValue = parseFloat(stringValue) / 100;
+    const formattedValue = formatter.format(floatValue);
+    return formattedValue;
+  };
+  
   return (
     <div className='w-[290px] m-auto'>
         <div
@@ -88,13 +107,13 @@ const Menu = () => {
             Valor
           </label>
           <input
-            onChange={handleValorPrato}
-            value={valorPrato}
+            onChange={(value)=>handleValorPrato(value)}
+            value={valorPratoFormatado}
             className="rounded-[4px] block w-[111px] p-2.5 text-[#464646] focus:outline-none mb-[16px]"
             placeholder="R$ 0,00"
             type="text"
             id="valor_prato"
-          />
+          />        
           <label htmlFor="descricao_prato" className="simple-text block mb-[4px] text-[14px] font-bold">
             Descrição do prato
           </label>

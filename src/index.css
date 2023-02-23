@@ -5,3 +5,17 @@
 body{
   background: #292929;
 }
+
+*::-webkit-scrollbar {
+  width: 4px;               /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: lightgrey;        /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #f3aa00;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 1px solid #f3aa00;  /* creates padding around scroll thumb */
+}
