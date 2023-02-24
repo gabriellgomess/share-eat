@@ -1,5 +1,5 @@
-.container-app{
-  background-image: url('./assets/img/bg-risc.png');
+.container-app {
+  background-image: url("./assets/img/bg-risc.png");
   background-repeat: no-repeat;
   background-position: 50% 0;
   background-size: contain;
@@ -7,10 +7,10 @@
   margin: 18px auto 27px auto;
 }
 
-.title{
-font-family: 'Poppins', sans-serif;
-font-weight: 700;
+.title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
 }
-.simple-text{
-  font-family: 'Nunito Sans', sans-serif; 
+.simple-text {
+  font-family: "Nunito Sans", sans-serif;
 }

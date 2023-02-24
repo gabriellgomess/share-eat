@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import ContextAPI from "../../ContextAPI/ContextAPI";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -6,24 +6,29 @@ import { Link } from "react-router-dom";
 import "./PlacePage.css";
 
 const PlacePage = () => {
+  // Hook para navegar entre as páginas
   const history = useNavigate();
-
+  // Função para voltar para a página anterior
   const handleVoltar = () => {
     history(-1);
   };
 
+  // invocando o contexto para ter acesso aos lugares
   const { lugares } = useContext(ContextAPI);
+  // Hook para pegar o nome do estabelecimento da URL
   const { name } = useParams();
 
   // Encontra o estabelecimento pelo nome
   const lugar = lugares.find((lugar) => lugar.name === name);
 
+  // Caso não encontre o estabelecimento, retorna uma mensagem de erro
   if (!lugar) {
     return <div>Lugar não encontrado.</div>;
   }
 
   return (
     <div className="text-[#FFFFFF] w-[330px] m-auto">
+      {/* Botão voltar para a página anterior */}
       <div
         onClick={()=>handleVoltar()}
         className="fixed top-[12px] cursor-pointer"
@@ -44,10 +49,12 @@ const PlacePage = () => {
       
         <div className="h-[500px] overflow-auto">
           <p className="simple-text">
+            {/* Verificação da quantidade de pratos cadastrados, caso for mais de um, completamos no plural, senão no singular */}
             {lugar.menuItems.length > 1
               ? lugar.menuItems.length + " pratos"
               : lugar.menuItems.length + " prato"}
           </p>
+          {/* Percorrendo menuItems para mostrar os cards com os pratos cadastrados */}
           {lugar.menuItems.map((menuItem) => (
             <div
               key={menuItem.name}
@@ -56,7 +63,7 @@ const PlacePage = () => {
               <div className="w-[100%] flex justify-between mb-[9px]">
                 <h2 className="title">{menuItem.name}</h2>
                 <h2 className="title">
-                  {" "}
+                  {/* Formatando em moeda brasileira o valor do prato */}
                   {parseFloat(menuItem.price).toLocaleString("pt-br", {
                     style: "currency",
                     currency: "BRL",
@@ -66,7 +73,7 @@ const PlacePage = () => {
               <p className="simple-text !ml-0">{menuItem.description}</p>
             </div>
           ))}
-
+          {/* Botão para adicionar um novo prato */}
           <Link
             to={`/share-eat/menu/${lugar.name}`}
             className="w-[64px] h-[64px] bg-[#F3AA00] rounded-full fixed bottom-[30px] right-[24px] flex items-center justify-center cursor-pointer"

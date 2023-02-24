@@ -9,20 +9,23 @@ import { Routes, Route } from "react-router-dom";
 import './App.css'
   
 const App = () => {
+  // state que irá guardar a lista de lugares, com os pratos de cada estabelecimento
+  // caso fosse uma API, o state seria preenchido com o resultado da requisição
   const [lugares, setLugares] = useState([]);
-  const [showForm, setShowForm] = useState(false);
 
+  // useEffect para preencher o state com a lista de lugares no carregamento da página
   useEffect(() => {
     setLugares(listaLugares);
   },[]);
   
   
-  return (
-    
+  return (    
     <>
-      <ContextAPI.Provider value={{lugares, setLugares, showForm, setShowForm}}>
+      {/* Contexto responsável por deixar disponível em toda a aplicação a lista de lugares */}
+      <ContextAPI.Provider value={{lugares, setLugares}}>
         <div className='container-app'>
           <img className='m-auto mb-[50px]' src={Title} alt="Logo Share Eat" />
+          {/* Rotas da aplicação */}
           <Routes>      
             <Route path="/share-eat" element={<Lugares />}/>
             <Route path="/share-eat/place/:name" element={<PlacePage />}/>
@@ -30,9 +33,7 @@ const App = () => {
           </Routes>
         </div>
       </ContextAPI.Provider> 
-    </>
-           
-    
+    </> 
   );
 }
 
