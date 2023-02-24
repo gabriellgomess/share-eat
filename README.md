@@ -38,12 +38,12 @@ Feito isso, acesse:
   cd share-eat
 ```
 
-E execute:
+E execute para instalar as depenências:
 
 ```bash  
   npm install 
 ```
-Para instalar as dependências, quando concluir a instalação, é possível iniciá-lo com:
+Quando concluir a instalação, é possível iniciá-lo com:
 
 ```bash  
   npm start
